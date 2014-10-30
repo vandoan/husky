@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="UTF-8">
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<style>
+			button{ cursor: none; }
+			i { display: inline; letter-spacing: 5px; }
+			#playpausebtn{ cursor: pointer; }
+			#mutebtn { }
+			button#playpausebtn { 
+				background: url("pause.png") no-repeat;
+				width: 100px;
+				height: 100px;
+			 }
+			button#mutebtn {
+			 	background: url("sound.jpg") no-repeat;
+			 	width:  100px;
+			 	height: 100px;
+			 }
+		</style>
+		<script>
+			var audio, playbtn, seek_bar;
+			function initAudioPlayer(){
+				audio = new Audio();
+				audio.src = "i_got.mp3";
+				audio.loop=true;
+				audio.play();
+				// set object references
+				playbtn = document.getElementById('playpausebtn');
+				mutebtn = document.getElementById('mutebtn');
+				// add event handling
+				playbtn.addEventListener("click", playPause);
+				mutebtn.addEventListener("click", mute);
+				// functions
+				function playPause(){
+					if(audio.paused){
+						audio.play();
+						playbtn.style.background = "url(pause.png)";
+					} else {
+						audio.pause();
+						playbtn.style.background = "url(play.jpg)";
+					}
+				}
+				function mute(){
+					if(audio.muted) {
+						audio.muted = false;
+						mutebtn.style.background =  "url(sound.jpg)";
+					} else {
+						audio.muted = true;
+						mutebtn.style.background = "url(mute.png)";
+
+					}
+				}
+			}
+			window.addEventListener("load", initAudioPlayer);
+		</script>
+	</head>
+	<body>	
+	<button id="playpausebtn"></button>
+	<button id="mutebtn"></button>
+
+	<i class="fa fa-volume-down"></i>
+	<i class="fa fa-volume-up"></i>
+	<i class="fa fa-pause"></i>	</body>
+	<i class="fa fa-play-circle"></i>
+
+</html>
